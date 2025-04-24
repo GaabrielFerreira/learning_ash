@@ -1,4 +1,6 @@
 import Config
+config :learning_ash, token_signing_secret: "xt1pQxZH6MajTLBEG1SKC8d1z1FdWD8j"
+config :bcrypt_elixir, log_rounds: 1
 
 # Configure your database
 #

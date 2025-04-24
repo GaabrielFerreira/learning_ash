@@ -19,7 +19,8 @@ defmodule LearningAsh.Application do
       # Start to serve requests, typically the last entry
       LearningAshWeb.Endpoint,
       {Absinthe.Subscription, LearningAshWeb.Endpoint},
-      AshGraphql.Subscription.Batcher
+      AshGraphql.Subscription.Batcher,
+      {AshAuthentication.Supervisor, [otp_app: :learning_ash]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

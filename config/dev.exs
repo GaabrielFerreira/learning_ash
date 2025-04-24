@@ -63,7 +63,7 @@ config :learning_ash, LearningAshWeb.Endpoint,
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :learning_ash, dev_routes: true
+config :learning_ash, dev_routes: true, token_signing_secret: "qUs04psKLQRTqMSNACk1HYQlRFWoVbwI"
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

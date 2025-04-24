@@ -23,6 +23,8 @@ config :spark,
     remove_parens?: true,
     "Ash.Resource": [
       section_order: [
+        :authentication,
+        :tokens,
         :graphql,
         :postgres,
         :resource,
@@ -48,7 +50,8 @@ config :spark,
 
 config :learning_ash,
   ecto_repos: [LearningAsh.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [timestamp_type: :utc_datetime],
+  ash_domains: [LearningAsh.Accounts]
 
 # Configures the endpoint
 config :learning_ash, LearningAshWeb.Endpoint,
