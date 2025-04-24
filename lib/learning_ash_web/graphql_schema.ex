@@ -2,7 +2,7 @@ defmodule LearningAshWeb.GraphqlSchema do
   use Absinthe.Schema
 
   use AshGraphql,
-    domains: []
+    domains: [LearningAsh.Accounts]
 
   import_types Absinthe.Plug.Types
 

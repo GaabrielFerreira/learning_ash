@@ -3,7 +3,7 @@ defmodule LearningAsh.Accounts.User do
     otp_app: :learning_ash,
     domain: LearningAsh.Accounts,
     authorizers: [Ash.Policy.Authorizer],
-    extensions: [AshAuthentication],
+    extensions: [AshAuthentication, AshGraphql.Resource],
     data_layer: AshPostgres.DataLayer
 
   authentication do
@@ -27,6 +27,20 @@ defmodule LearningAsh.Accounts.User do
           request_password_reset_action_name :request_password_reset_token
         end
       end
+    end
+  end
+
+  graphql do
+    type :user
+
+    queries do
+      read_one :sign_in, :sign_in_with_password, type_name: :user_with_token
+    end
+
+    mutations do
+      create :create_user, :register_with_password
+      update :reset_password, :reset_password_with_token
+      action :request_password_reset_token, :request_password_reset_token
     end
   end
 
@@ -218,7 +232,7 @@ defmodule LearningAsh.Accounts.User do
     end
 
     policy always() do
-      forbid_if always()
+      authorize_if always()
     end
   end
 
