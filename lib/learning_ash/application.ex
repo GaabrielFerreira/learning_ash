@@ -17,7 +17,9 @@ defmodule LearningAsh.Application do
       # Start a worker by calling: LearningAsh.Worker.start_link(arg)
       # {LearningAsh.Worker, arg},
       # Start to serve requests, typically the last entry
-      LearningAshWeb.Endpoint
+      LearningAshWeb.Endpoint,
+      {Absinthe.Subscription, LearningAshWeb.Endpoint},
+      AshGraphql.Subscription.Batcher
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

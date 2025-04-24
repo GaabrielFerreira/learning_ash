@@ -1,6 +1,10 @@
 defmodule LearningAshWeb.Router do
   use LearningAshWeb, :router
 
+  pipeline :graphql do
+    plug AshGraphql.Plug
+  end
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -12,6 +16,17 @@ defmodule LearningAshWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  scope "/gql" do
+    pipe_through [:graphql]
+
+    forward "/playground", Absinthe.Plug.GraphiQL,
+      schema: Module.concat(["LearningAshWeb.GraphqlSchema"]),
+      socket: Module.concat(["LearningAshWeb.GraphqlSocket"]),
+      interface: :playground
+
+    forward "/", Absinthe.Plug, schema: Module.concat(["LearningAshWeb.GraphqlSchema"])
   end
 
   scope "/", LearningAshWeb do
