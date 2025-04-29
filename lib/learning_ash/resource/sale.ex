@@ -26,7 +26,30 @@ defmodule LearningAsh.Resource.Sale do
   end
 
   actions do
-    defaults [:read, :destroy, create: :*, update: :*]
+    defaults [:read, :destroy, update: :*]
+
+    create :create do
+      accept [
+        :buyer_name,
+        :seller_name,
+        :product_name,
+        :quantity,
+        :unity_price,
+        :product_desc
+      ]
+
+      change(fn changeset, _ ->
+        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
+        unity_price = Ash.Changeset.get_attribute(changeset, :unity_price)
+
+        if (quantity && unity_price) do
+          total_price = quantity * unity_price
+          Ash.Changeset.change_attribute(changeset, :total_price, total_price)
+        else
+          changeset
+        end
+      end)
+    end
   end
 
   attributes do
