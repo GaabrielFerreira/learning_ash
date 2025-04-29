@@ -1,4 +1,4 @@
-defmodule LearningAsh.Accounts do
+defmodule LearningAsh.ResourceDomain do
   use Ash.Domain,
     extensions: [
       AshGraphql.Domain
@@ -6,11 +6,10 @@ defmodule LearningAsh.Accounts do
 
   graphql do
     root_level_errors? true
-    authorize? true
+    authorize? false
   end
 
   resources do
-    resource LearningAsh.Accounts.Token
-    resource LearningAsh.Accounts.User
+    resource LearningAsh.Resource.Sale
   end
 end

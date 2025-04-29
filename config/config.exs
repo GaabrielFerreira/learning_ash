@@ -8,7 +8,7 @@
 import Config
 
 config :ash,
-  allow_forbidden_field_for_relationships_by_default?: true,
+  allow_forbidden_field_for_relationsales_by_default?: true,
   include_embedded_source_by_default?: false,
   show_keysets_for_all_actions?: false,
   default_page_type: :keyset,
@@ -37,7 +37,7 @@ config :spark,
         :validations,
         :multitenancy,
         :attributes,
-        :relationships,
+        :relationsales,
         :calculations,
         :aggregates,
         :identities
@@ -51,7 +51,7 @@ config :spark,
 config :learning_ash,
   ecto_repos: [LearningAsh.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: [LearningAsh.Accounts]
+  ash_domains: [LearningAsh.Accounts, LearningAsh.ResourceDomain]
 
 # Configures the endpoint
 config :learning_ash, LearningAshWeb.Endpoint,

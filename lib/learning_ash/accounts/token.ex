@@ -3,8 +3,16 @@ defmodule LearningAsh.Accounts.Token do
     otp_app: :learning_ash,
     domain: LearningAsh.Accounts,
     authorizers: [Ash.Policy.Authorizer],
-    extensions: [AshAuthentication.TokenResource],
+    extensions: [AshAuthentication.TokenResource, AshGraphql.Resource],
     data_layer: AshPostgres.DataLayer
+
+  graphql do
+    type :token
+
+    queries do
+      
+    end
+  end
 
   postgres do
     table "tokens"
