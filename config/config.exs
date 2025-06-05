@@ -71,7 +71,15 @@ config :learning_ash, LearningAshWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :learning_ash, LearningAsh.Mailer, adapter: Swoosh.Adapters.Local
+config :learning_ash, LearningAsh.Mailer,
+  relay: System.get_env("SMTP_SERVER"),
+  username: System.get_env("SMTP_USERNAME"),
+  password: System.get_env("SMTP_PASSWORD"),
+  port: System.get_env("SMTP_PORT"),
+  ssl: false,
+  tls: :always,
+  tls_options: [verify: :verify_none],
+  auth: :always
 
 # Configure esbuild (the version is required)
 config :esbuild,

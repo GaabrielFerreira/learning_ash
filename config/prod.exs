@@ -8,6 +8,7 @@ import Config
 config :learning_ash, LearningAshWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
+config :learning_ash, LearningAsh.Mailer, adapter: Swoosh.Adapters.SMTP
 # Configures Swoosh API Client
 config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: LearningAsh.Finch
 
